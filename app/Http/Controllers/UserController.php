@@ -16,7 +16,10 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+
+		$userCount = User::count();
+
+        return view('users.index', ['users' => $model->paginate(15)])->with('userCount', $userCount);
     }
 
     /**
@@ -82,5 +85,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
-    }
+	}
+	
+	
 }

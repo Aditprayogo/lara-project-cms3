@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\user;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+		$userCount = User::count();
+
+        return view('dashboard', compact('userCount'));
     }
 }
