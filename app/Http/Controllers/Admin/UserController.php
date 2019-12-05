@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,7 @@ class UserController extends Controller
 
 		$userCount = User::count();
 
-        return view('users.index', ['users' => $model->paginate(15)])->with('userCount', $userCount);
+        return view('pages.users.index', ['users' => $model->paginate(15)])->with('userCount', $userCount);
     }
 
     /**
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('pages.users.create');
     }
 
     /**
@@ -41,9 +42,16 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $model)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+		// $model->create( $request->merge( ['password' => Hash::make($request->get('password'))] )->all());
+		
+		$new_user = new User();
+		$new_user->name = $request->input('name');
+		$new_user->password = bcrypt($request->input('name'));
+		$new_user->email = $request->input('email');
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+		$new_user->save();
+
+        return redirect()->route('pages.user.index')->withStatus(__('User successfully created.'));
     }
 
     /**
@@ -54,7 +62,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('pages.users.edit', compact('user'));
     }
 
     /**
@@ -64,14 +72,14 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function update(UserRequest $request, User $user)
     {
         $user->update(
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$request->get('password') ? '' : 'password']
         ));
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('pages.user.index')->withStatus(__('User successfully updated.'));
     }
 
     /**
@@ -84,7 +92,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('pages.user.index')->withStatus(__('User successfully deleted.'));
 	}
 	
 	

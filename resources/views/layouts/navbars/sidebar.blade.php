@@ -83,6 +83,8 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+
+                {{-- User --}}
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fas fa-users" style="color: #f4645f;"></i>
@@ -99,14 +101,16 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
+                                    <i class="fas fa-user-edit  " style="color: #2dce89;"></i>
                                     {{ __('User Management') }}
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                {{-- end --}}
 
-                {{-- <li class="nav-item">
+                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                     </a>
@@ -125,7 +129,7 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
                     </a>
-                </li> --}}
+                </li>  --}}
                
             </ul>
             <!-- Divider -->
