@@ -51,7 +51,7 @@ class UserController extends Controller
 
 		$new_user->save();
 
-        return redirect()->route('pages.user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('pages.user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
 	}
 	
 	
