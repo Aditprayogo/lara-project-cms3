@@ -18,12 +18,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('user.update', $user) }}" autocomplete="off">
+                        <form method="POST" action="{{ route('user.update', $user) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
+                            {{-- <input type="hidden" value="{{ $user->password }}" name="old_password"> --}}
+
                             <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>
                             <div class="pl-lg-4">
+
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $user->name) }}" required autofocus>
@@ -34,6 +37,7 @@
                                         </span>
                                     @endif
                                 </div>
+
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
@@ -44,8 +48,56 @@
                                         </span>
                                     @endif
                                 </div>
+
+                              
+
+                                <div class="form-group{{ $errors->has('roles') ? ' has-danger' : '' }}">
+
+                                    <label class="form-control-label" for="input-roles">{{ __('Roles') }}</label>
+
+                                    <select name="roles" id="input-role"  class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
+
+                                        @if ($user->roles == 'ADMIN')
+
+                                            <option value="USER" {{ old('roles') == 'USER' ? 'selected' : '' }}>USER</option>
+
+                                            <option value="ADMIN" {{ old('roles') == 'ADMIN' ? 'selected' : '' }} selected>ADMIN</option>
+                                            
+                                        @else
+
+                                        
+                                            <option value="USER" {{ old('roles') == 'USER' ? 'selected' : '' }} selected>USER</option>
+
+                                            <option value="ADMIN" {{ old('roles') == 'ADMIN' ? 'selected' : '' }}>ADMIN</option>
+                                            
+                                        @endif
+
+                                        
+                                    
+                                    </select>
+
+                                    @if ($errors->has('roles'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('roles') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-avatar">{{ __('Avatar') }}</label>
+                                    
+                                    <input type="file" name="avatar" class="form-control">
+
+                                    @if ($errors->has('avatar'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
+
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="">
                                     
                                     @if ($errors->has('password'))
@@ -54,6 +106,7 @@
                                         </span>
                                     @endif
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="">

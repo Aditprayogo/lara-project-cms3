@@ -76,10 +76,35 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except([$request->get('password') ? '' : 'password']
-        ));
+
+		$input = $request->all();
+
+		$hashedpassword = $user->password;
+		
+		if ($input['password'] == '') {
+			# code...
+			$input['password'] = $hashedpassword;
+
+		} else {
+
+			$input['password'] = Hash::make($request->input('password'));
+
+		}
+
+		if ($request->file('avatar')) {
+
+			# code...
+			$input['avatar'] = $request->file('avatar')->store('assets/avatar', 'public');
+
+		}
+
+		$user->update($input);
+
+
+        // $user->update(
+		// 	$request->merge(['password' => Hash::make($request->get('password'))], ['avatar' => $new_image])
+        //         ->except([$request->get('password') ? '' : 'password']
+        // ));
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
