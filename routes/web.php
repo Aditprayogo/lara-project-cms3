@@ -15,23 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-
 
 Route::group(['middleware' => 'auth'], function () {
-
 	Route::prefix('admin')
 		->namespace('admin')
 		->group(function () {
 
-			Route::get('/', 'DashboardController@index')->name('home');
+			Route::get('/', 'DashboardController@index')
+				->name('dashboard.index');
+
 			Route::resource('user', 'UserController', ['except' => ['show']]);
+
 			Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+
 			Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+			
 			Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-	});
-	
+	});	
 });
+
+
+Auth::routes();
 

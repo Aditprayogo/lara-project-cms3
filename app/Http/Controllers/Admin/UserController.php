@@ -20,7 +20,7 @@ class UserController extends Controller
 
 		$userCount = User::count();
 
-        return view('pages.users.index', ['users' => $model->paginate(15)])->with('userCount', $userCount);
+        return view('pages.admin.users.index', ['users' => $model->paginate(15)])->with('userCount', $userCount);
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.users.create');
+        return view('pages.admin.users.create');
     }
 
     /**
@@ -48,6 +48,8 @@ class UserController extends Controller
 		$new_user->name = $request->input('name');
 		$new_user->password = bcrypt($request->input('name'));
 		$new_user->email = $request->input('email');
+		$new_user->roles = $request->input('roles');
+		$new_user->avatar = $request->file('avatar')->store('assets/avatar', 'public');
 
 		$new_user->save();
 
@@ -62,7 +64,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pages.users.edit', compact('user'));
+        return view('pages.admin.users.edit', compact('user'));
     }
 
     /**
@@ -79,7 +81,7 @@ class UserController extends Controller
                 ->except([$request->get('password') ? '' : 'password']
         ));
 
-        return redirect()->route('pages.user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
     /**

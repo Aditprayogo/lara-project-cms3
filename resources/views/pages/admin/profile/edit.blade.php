@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('User Profile')])
 
 @section('content')
-    @include('pages.users.partials.header', [
+    @include('pages.admin.users.partials.header', [
         'title' => __('Hello') . ' '. auth()->user()->name,
         'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
         'class' => 'col-lg-7'
@@ -15,7 +15,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                    <img src="{{ Storage::url(auth()->user()->avatar) }}" class="rounded-circle" width="150" height="150">
                                 </a>
                             </div>
                         </div>
@@ -73,7 +73,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+
+                        <form method="post" action="{{ route('profile.update') }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
@@ -89,6 +90,7 @@
                             @endif
 
                             <div class="pl-lg-4">
+
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
@@ -99,6 +101,7 @@
                                         </span>
                                     @endif
                                 </div>
+
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
@@ -110,9 +113,54 @@
                                     @endif
                                 </div>
 
+                                <div class="form-group{{ $errors->has('roles') ? ' has-danger' : '' }}">
+
+                                    <label class="form-control-label" for="input-roles">{{ __('Roles') }}</label>
+
+                                    <select name="roles" id="input-role"  class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
+
+                                        @if (Auth()->user()->roles == 'ADMIN')
+
+                                            <option value="USER" {{ old('roles') == 'USER' ? 'selected' : '' }}>USER</option>
+
+                                            <option value="ADMIN" {{ old('roles') == 'ADMIN' ? 'selected' : '' }} selected>ADMIN</option>
+                                            
+                                        @else
+
+                                        
+                                            <option value="USER" {{ old('roles') == 'USER' ? 'selected' : '' }} selected>USER</option>
+
+                                            <option value="ADMIN" {{ old('roles') == 'ADMIN' ? 'selected' : '' }} selected>ADMIN</option>
+                                            
+                                        @endif
+
+                                        
+                                    
+                                    </select>
+
+                                    @if ($errors->has('roles'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('roles') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-avatar">{{ __('Avatar') }}</label>
+                                    
+                                    <input type="file" name="avatar" class="form-control">
+
+                                    @if ($errors->has('avatar'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
+
                             </div>
                         </form>
                         <hr class="my-4" />

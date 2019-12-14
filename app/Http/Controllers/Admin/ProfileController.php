@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('pages.profile.edit');
+        return view('pages.admin.profile.edit');
     }
 
     /**
@@ -27,7 +27,20 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        auth()->user()->update($request->all());
+
+		$input = $request->all();
+		
+		if ($request->file('avatar')) {
+			# code...
+			if (auth()->user()->avatar && file_exists(storage_path('app/public/assets/avatar/' . auth()->user()->avatar))) {
+				# code...
+				\Storage::delete('app/public/assets/avatar/' . auth()->user()->avatar);
+			}
+
+			$input['avatar'] = $request->file('avatar')->store('assets/avatar', 'public');
+		}
+
+        auth()->user()->update($input);
 
         return back()->withStatus(__('Profile successfully updated.'));
     }
