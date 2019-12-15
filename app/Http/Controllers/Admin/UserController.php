@@ -49,7 +49,13 @@ class UserController extends Controller
 		$new_user->password = bcrypt($request->input('name'));
 		$new_user->email = $request->input('email');
 		$new_user->roles = $request->input('roles');
-		$new_user->avatar = $request->file('avatar')->store('assets/avatar', 'public');
+
+		if ($request->file('avatar')) {
+			# code...
+			$new_user->avatar = $request->file('avatar')->store('assets/avatar', 'public');
+			
+		}
+		
 
 		$new_user->save();
 

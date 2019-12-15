@@ -83,7 +83,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+		$post = Post::with(['user'])->findOrFail($id);
+		
+		return view('pages.admin.posts.edit', [
+			'post' => $post
+		]);
     }
 
     /**
@@ -95,7 +99,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+			'image' => 'image',
+			'title' => 'required|min:4',
+			'body' => 'required'
+		]);
+		
+		$post = Post::findOrFail($id);
+		$input = $request->all();
+
+		if ($request->file('image')) {
+
+			# code...
+			if ($user->image && file_exists(storage_path('app/public/assets/image/' . $user->image))) {
+				# code...
+				\Storage::delete('app/public/assets/image/' . $user->image);
+			}
+
+			$input['image'] = $request->file('image')->store('assets/image', 'public');
+		}
+
+		$post->update($input);
+
+		return redirect()->route('post.index')->withStatus(__('Post successfully updated.'));
     }
 
     /**
@@ -106,6 +132,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+		Post::findOrFail($id)->delete();
+		
+		return redirect()->route('post.index')->withStatus(__('Post successfully deleted.'));
     }
 }
