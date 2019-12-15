@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ url('/') }}">
+        <a class="navbar-brand pt-0" href="{{ url('/admin') }}">
             <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
@@ -79,7 +79,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">
+                    <a class="nav-link" href="{{ url('/admin') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
@@ -110,26 +110,32 @@
                 </li>
                 {{-- end --}}
 
-                 {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('post.index') }}">
+                        <i class="far fa-copy" style="color: #11cdef;"></i> {{ __('Posts') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
+
+                {{-- <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples2">
+                        <i class="far fa-copy" style="color: #11cdef;"></i>
+                        <span class="nav-link-text" style="color: #11cdef;">{{ __('Posts') }}</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li>  --}}
+
+                    <div class="collapse show" id="navbar-examples2">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('post.index') }}">
+                                    <i class="fas fa-copy  " style="color: #172b4d;"></i>
+                                    {{ __('Post Management') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> --}}
+                {{-- end --}}
+                
+
                
             </ul>
             <!-- Divider -->

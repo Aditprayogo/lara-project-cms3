@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.app', ['title' => __('Post Management')])
 
 @section('content')
 
@@ -13,10 +13,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Users') }}</h3>
+                                <h3 class="mb-0">{{ __('posts') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                                <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary">{{ __('Add post') }}</a>
                             </div>
                         </div>
                     </div>
@@ -36,43 +36,46 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Name') }}</th>
+                                    <th scope="col">{{ __('Post') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
-                                    <th scope="col">{{ __('Email') }}</th>
+                                    <th scope="col">{{ __('User') }}</th>
+                                    <th scope="col">{{ __('Title') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($posts as $post)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $post->id }}</td>
                                         <td>
-                                        <img src="{{ Storage::url($user->avatar) }}" alt="" class="rounded-circle" width="40" height="40">
+                                        <img src="{{ Storage::url($post->image) }}" alt="" class="rounded-circle" width="40" height="40">
                                         </td>
                                         <td>
-                                            <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                            {{ $post->user->name }}
                                         </td>
-                                        <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $post->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    @if ($user->id != auth()->id())
-                                                        <form action="{{ route('user.destroy', $user) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            
-                                                            <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                                {{ __('Delete') }}
-                                                            </button>
-                                                        </form>    
-                                                    @else
-                                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
-                                                    @endif
+                                                   
+                                                    <form action="{{ route('post.destroy', [$post->id]) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        
+                                                        <a class="dropdown-item" href="{{ route('post.edit', [$post->id]) }}">{{ __('Edit') }}</a>
+
+                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this post?") }}') ? this.parentElement.submit() : ''">
+                                                            {{ __('Delete') }}
+                                                        </button>
+                                                    </form>    
+                                                
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </td>
@@ -83,7 +86,7 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $users->links() }}
+                            {{ $posts->links() }}
                         </nav>
                     </div>
                 </div>
