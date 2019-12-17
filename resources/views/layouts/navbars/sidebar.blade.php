@@ -117,6 +117,14 @@
                     </a>
                 </li>
 
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('category.index') }}">
+                        <i class="fas fa-stream" style="color: #172b4d;"></i> {{ __('Categories') }}
+                    </a>
+                </li>
+
+                
+
                 {{-- <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples2">
                         <i class="far fa-copy" style="color: #11cdef;"></i>

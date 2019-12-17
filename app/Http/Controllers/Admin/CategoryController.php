@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Category;
+
 class CategoryController extends Controller
 {
     /**
@@ -14,7 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+		$categories = Category::with(['posts'])->paginate(10);
+		
+		return view('pages.admin.categories.index',[
+			'categories' => $categories
+		]);
     }
 
     /**
@@ -24,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.categories.create');
     }
 
     /**
@@ -35,7 +41,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+			'name' => 'required'
+		]);
+
+		$input = $request->all();
+
+		Category::create($input);
+
+		return redirect()->route('category.index')->withStatus(__('Category successfully created.'));
     }
 
     /**
@@ -57,7 +71,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+		$category = Category::findOrFail($id);
+		
+		return view('pages.admin.categories.edit',[
+			'category' => $category
+		]);
+
     }
 
     /**
@@ -69,7 +88,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+			'name' => 'required'
+		]);
+
+		$input = $request->all();
+
+		Category::findOrFail($id)->update($input);
+
+		return redirect()->route('category.index')->withStatus(__('Category successfully updated.'));
     }
 
     /**
@@ -80,6 +107,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+		Category::findOrFail($id)->delete();
+		
+		return redirect()->route('category.index')->withStatus(__('Category successfully deleted'));
+	}
 }
