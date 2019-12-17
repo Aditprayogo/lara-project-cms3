@@ -35,7 +35,8 @@
                         <!-- Chart -->
                         <div class="chart">
                             <!-- Chart wrapper -->
-                            <canvas id="chart-sales" class="chart-canvas"></canvas>
+                            {{-- <canvas id="chart-sales" class="chart-canvas"></canvas> --}}
+                            <canvas id="myChart" class="chart-canvas"></canvas>
                         </div>
                     </div>
                 </div>
@@ -287,4 +288,38 @@
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
+    <script>
+     
+         var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Posts', 'Categories', 'Users'],
+                datasets: [{
+                    label: 'Data of CMS',
+                    data: [ {{$postCount}}, {{$categoryCount}}, {{$userCount}}],
+                    backgroundColor: [
+                        '#2dce89',
+                        '#f5365c',
+                        '#11cdef',
+                    ],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    
+    
+    </script>
 @endpush

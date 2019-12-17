@@ -123,6 +123,8 @@ class PostController extends Controller
 
 		$post->update($input);
 
+		$post->categories()->sync($request->get('categories'));
+
 		return redirect()->route('post.index')->withStatus(__('Post successfully updated.'));
     }
 

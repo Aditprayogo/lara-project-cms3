@@ -54,6 +54,9 @@
                                     @endif
                                 </div>
 
+                              
+
+
                                 <div class="form-group{{ $errors->has('image') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
 
@@ -67,6 +70,10 @@
                                     @endif
                                 </div>
                               
+
+                                  <label for="categories">Categories</label><br>
+
+                                <select name="categories[]" multiple id="categories" class="form-control"></select>
 
                                 
 
@@ -85,3 +92,43 @@
         @include('layouts.footers.auth')
     </div>
 @endsection
+
+
+@push('js')
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<script>
+
+$('#categories').select2({
+    ajax: {
+        url: 'http://lara-project-cms3.test/admin/ajax/categories/search',
+        processResults: function(data) {
+            return {
+                results: data.map(function(item){
+                    return {
+                        id: item.id,
+                        text: item.name
+                    }
+                })
+            }
+        }
+    }
+})
+
+var categories = {!! $post->categories !!}
+
+categories.forEach(function(category){
+    var option = new Option(category.name, category.id, true, true);
+    $('#categories').append(option).trigger('change');
+})
+
+
+
+
+
+</script>
+    
+@endpush

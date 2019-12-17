@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\user;
+use App\Category;
+use App\Post;
 
 class DashboardController extends Controller
 {
@@ -26,7 +28,13 @@ class DashboardController extends Controller
     {
 
 		$userCount = User::count();
+		$categoryCount = Category::count();
+		$postCount = Post::count();
 
-        return view('pages.dashboard', compact('userCount'));
+        return view('pages.dashboard', [
+			'userCount' => $userCount,
+			'categoryCount' => $categoryCount,
+			'postCount' => $postCount
+		]);
     }
 }
