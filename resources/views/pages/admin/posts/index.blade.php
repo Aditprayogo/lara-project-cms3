@@ -55,7 +55,7 @@
                                         <td>
                                             {{ $post->user->name }}
                                         </td>
-                                        <td>{{ $post->title }}</td>
+                                        <td>{{ \Str::limit($post->title,10) }}</td>
                                         <td>
                                             <ul class="pl-3">
                                                 @foreach ($post->categories as $category)
