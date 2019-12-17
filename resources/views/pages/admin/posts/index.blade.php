@@ -40,6 +40,7 @@
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('User') }}</th>
                                     <th scope="col">{{ __('Title') }}</th>
+                                    <th scope="col">{{ __('Categories') }}</th>
                                     <th scope="col">{{ __('Creation Date') }}</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -55,6 +56,14 @@
                                             {{ $post->user->name }}
                                         </td>
                                         <td>{{ $post->title }}</td>
+                                        <td>
+                                            <ul class="pl-3">
+                                                @foreach ($post->categories as $category)
+                                                    <li>{{ $category->name }}</li>
+                                                @endforeach
+
+                                            </ul>
+                                        </td>
                                         <td>{{ $post->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">

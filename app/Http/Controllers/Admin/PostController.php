@@ -60,6 +60,8 @@ class PostController extends Controller
 
 		$new_post->save();
 
+		$new_post->categories()->attach($request->get('categories'));
+
 		return redirect()->route('post.index')->withStatus(__('Post successfully created.'));
 
     }

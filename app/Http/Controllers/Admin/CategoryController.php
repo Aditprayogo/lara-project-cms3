@@ -102,6 +102,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+	 * $keyword =
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -110,5 +111,15 @@ class CategoryController extends Controller
 		Category::findOrFail($id)->delete();
 		
 		return redirect()->route('category.index')->withStatus(__('Category successfully deleted'));
+	}
+
+	public function ajaxSearch(Request $request)
+	{
+		# code...
+		$keyword = $request->get('q');
+
+		$categories = Category::where('name', 'LIKE', "%$keyword%")->get();
+
+		return $categories;
 	}
 }
