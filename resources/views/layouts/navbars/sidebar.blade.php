@@ -6,7 +6,8 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ url('/admin') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            <img src="{{ asset('argon') }}/img/brand/vue.png" class="navbar-brand-img" alt="...">
+            Laravel-CMS-v3
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

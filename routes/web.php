@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 			Route::resource('post', 'PostController');
 
+			Route::resource('category', 'CategoryController');
+			
 			Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 
 			Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
