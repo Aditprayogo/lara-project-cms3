@@ -9,11 +9,12 @@
   <div class="sidebar-box ftco-animate">
       <h3 class="sidebar-heading">Categories</h3>
     <ul class="categories">
-      <li><a href="#">Fashion <span>(6)</span></a></li>
-      <li><a href="#">Technology <span>(8)</span></a></li>
-      <li><a href="#">Travel <span>(2)</span></a></li>
-      <li><a href="#">Food <span>(2)</span></a></li>
-      <li><a href="#">Photography <span>(7)</span></a></li>
+        @forelse ($categories as $category)
+            <li><a href="#"> {{ $category->name }} <span>{{ $category->posts()->count()  }}</span></a></li>
+        @empty
+            Empty
+        @endforelse
+      
     </ul>
   </div>
 
@@ -54,30 +55,19 @@
     </div>
   </div>
 
-  <div class="sidebar-box ftco-animate">
-    <h3 class="sidebar-heading">Tag Cloud</h3>
-    <ul class="tagcloud">
-      <a href="#" class="tag-cloud-link">animals</a>
-      <a href="#" class="tag-cloud-link">human</a>
-      <a href="#" class="tag-cloud-link">people</a>
-      <a href="#" class="tag-cloud-link">cat</a>
-      <a href="#" class="tag-cloud-link">dog</a>
-      <a href="#" class="tag-cloud-link">nature</a>
-      <a href="#" class="tag-cloud-link">leaves</a>
-      <a href="#" class="tag-cloud-link">food</a>
-    </ul>
-  </div>
+  
 
-              <div class="sidebar-box subs-wrap img py-4" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">
-                  <div class="overlay"></div>
-                  <h3 class="mb-4 sidebar-heading">Newsletter</h3>
-                  <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
-    <form action="#" class="subscribe-form">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Email Address">
-        <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
-      </div>
-    </form>
+    <div class="sidebar-box subs-wrap img py-4" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">
+        <div class="overlay"></div>
+        <h3 class="mb-4 sidebar-heading">Newsletter</h3>
+        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+
+        <form action="#" class="subscribe-form">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email Address">
+                <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+            </div>
+        </form>
   </div>
 
   <div class="sidebar-box ftco-animate">
