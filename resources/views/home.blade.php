@@ -11,9 +11,9 @@
                     @forelse ($posts as $post)
                     <div class="col-md-12">
                         <div class="blog-entry ftco-animate d-md-flex">
-                            <a href="single.html" class="img img-2" style="background-image: url({{ Storage::url($post->image) }});"></a>
+                            <a href="{{ route('post.detail', [$post->slug]) }}" class="img img-2" style="background-image: url({{ Storage::url($post->image) }});"></a>
                             <div class="text text-2 pl-md-4">
-                                <h3 class="mb-2"><a href="single.html">{{$post->title}}</a></h3>
+                                <h3 class="mb-2"><a href="{{route('post.detail', [$post->slug])}}">{{$post->title}}</a></h3>
                                 <div class="meta-wrap">
                                                     <p class="meta">
                                         <span><i class="icon-calendar mr-2"></i>{{$post->created_at}}</span>
