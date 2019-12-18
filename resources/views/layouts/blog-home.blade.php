@@ -19,7 +19,7 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			@include('includes.frontend.navbar')
-            <br>
+            
 			@include('includes.frontend.footer')
 			
         </aside> <!-- END COLORLIB-ASIDE -->

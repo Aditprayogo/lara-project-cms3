@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row d-flex">
 
-            <div class="col-lg-8 px-md-5 py-5">
+            <div class="col-lg-12 px-md-5 py-5">
                 {{-- <div class="row pt-md-10"> --}}
                     <h1 class="mb-3">{{ $post->title }}</h1>
             <p>{{ $post->body}}</p>

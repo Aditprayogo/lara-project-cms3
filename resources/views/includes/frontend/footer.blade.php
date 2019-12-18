@@ -1,5 +1,6 @@
 <div class="colorlib-footer">
-    <h1 id="colorlib-logo" class="mb-4"><a href="index.html" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">Aditiya <span>Prayogo</span></a></h1>
+    <br>
+    <h1 id="colorlib-logo" class="mb-0"><a href="index.html" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">Aditiya <span>Prayogo</span></a></h1>
     <div class="mb-4">
         <h3>Subscribe for newsletter</h3>
         <form action="#" class="colorlib-subscribe-form">
@@ -10,6 +11,6 @@
 </form>
     </div>
     <p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 </div>

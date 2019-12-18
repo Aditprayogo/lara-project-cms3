@@ -16,7 +16,7 @@ class DetailController extends Controller
 				->where('slug', $slug)
 				->firstOrFail();
 
-		$post->views += 1;
+		$post->views = $post->views + 1;
 
 		$post->save();
 
