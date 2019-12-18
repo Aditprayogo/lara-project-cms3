@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="{{ url('frontend/css/bootstrap-datepicker.css') }}">
 <link rel="stylesheet" href="{{ url('frontend/css/jquery.timepicker.css') }}">
 
+<link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="{{ url('frontend/css/flaticon.css') }}">
 <link rel="stylesheet" href="{{ url('frontend/css/icomoon.css') }}">

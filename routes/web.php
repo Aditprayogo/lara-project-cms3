@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')
+	->name('home.index');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -41,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});	
 });
+
+
 
 
 
