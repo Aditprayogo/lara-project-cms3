@@ -35,15 +35,14 @@
                         
                 </div><!-- END-->
                 <div class="row">
-                    <div class="col">
-                        <div class="block-27">
-                            <ul>
-                                <li>{{ $posts->links() }}</li>
-                            </ul>
-                        </div>
-                    </div>
+              <div class="col">
+                <div class="block-27">
+                  <ul>
+                    <li>{{ $posts->links() }}</li>
+                  </ul>
                 </div>
-                {{-- end row --}}
+              </div>
+            </div>
             </div>
             <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
 

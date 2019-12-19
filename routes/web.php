@@ -17,8 +17,7 @@ Route::get('/', 'HomeController@index')
 Route::get('/post/{slug}', 'DetailController@index')
 	->name('post.detail');
 
-Route::get('/post/{id}', 'HomeController@post_by_category')
-	->name('post.category');
+
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -48,7 +47,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Route::get('/category/{$id}/posts', 'HomeController@postByCategory')
+	->name('category.post');
 
+Route::get('/about', 'AboutController@index')
+	->name('about.index');
 
 
 Auth::routes();

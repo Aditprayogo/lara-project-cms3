@@ -2,8 +2,8 @@
     <ul>
         <li><a href="{{ Route('home.index') }}">Home</a></li>
         <li><a href="fashion.html">Fashion</a></li>
-        <li><a href="travel.html">Travel</a></li>
-        <li><a href="about.html">About</a></li>
+        {{-- <li><a href="travel.html">Travel</a></li> --}}
+        <li><a href="{{ Route('about.index') }}">About</a></li>
 {{--         
        @guest
             <li><a href="{{url('login')}}">Login</a></li>

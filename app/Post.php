@@ -24,7 +24,7 @@ class Post extends Model
 	public function categories()
 	{
 		# code...
-		return $this->belongsToMany('App\Category')->withPivot('id');
+		return $this->belongsToMany('App\Category')->withPivot('category_id');
 	}
 
 	
