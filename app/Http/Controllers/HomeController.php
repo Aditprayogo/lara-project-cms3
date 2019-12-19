@@ -21,4 +21,27 @@ class HomeController extends Controller
 			'categories' => $categories
 		]);
 	}
+
+	public function pupular()
+	{
+		# code...
+		$posts = Post::with(['user', 'categories'])->orderBy('views', 'asc')->take(10);
+
+		return view('includes.frontend.sidebar', [
+			'posts' => $posts
+		]);
+	}
+
+	public function post_by_category($id)
+	{
+		# code...
+		
+
+		$categories = Categories::all();
+
+		return view('home', [
+			'posts' => $posts,
+			'categories' => $categories
+		]);
+	}
 }

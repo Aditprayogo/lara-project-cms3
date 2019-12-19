@@ -41,7 +41,7 @@
                                 <div class="form-group{{ $errors->has('body') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-body">{{ __('Body') }}</label>
 
-                                    <textarea name="body" id="" cols="30" rows="10" class="d-block w-100 form-control @error('about') is-invalid @enderror">{{ old('about') }}</textarea>
+                                    <textarea name="body" id="editor1" cols="100" rows="20" class=" form-control @error('about') is-invalid @enderror">{{ old('about') }}</textarea>
 
                                   
 
@@ -107,6 +107,15 @@ $('#categories').select2({
     }
   }
 });
+
+
+
+</script>
+
+<script>
+
+
+    CKEDITOR.replace( 'editor1' );
 
 
 

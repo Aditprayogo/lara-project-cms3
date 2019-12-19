@@ -17,6 +17,9 @@ Route::get('/', 'HomeController@index')
 Route::get('/post/{slug}', 'DetailController@index')
 	->name('post.detail');
 
+Route::get('/post/{id}', 'HomeController@post_by_category')
+	->name('post.category');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	

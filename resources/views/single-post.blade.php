@@ -10,7 +10,7 @@
             <div class="col-lg-12 px-md-5 py-5">
                 {{-- <div class="row pt-md-10"> --}}
                     <h1 class="mb-3">{{ $post->title }}</h1>
-            <p>{{ $post->body}}</p>
+            <p>{!! $post->body!!}</p>
             <p>
               <img src="{{ Storage::url($post->image) }}" alt="" class="img-fluid">
             </p>

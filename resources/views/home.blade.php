@@ -21,8 +21,8 @@
                                         <span><i class="far fa-eye"></i> {{ $post->views }} Views</span>
                                     </p>
                                 </div>
-                                <p class="mb-4">{{ Str::limit($post->body,40) }}</p>
-                                <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                                <p class="mb-4">{!! Str::limit($post->body,100) !!}</p>
+                                <p><a href="{{route('post.detail', [$post->slug])}}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
       <h3 class="sidebar-heading">Categories</h3>
     <ul class="categories">
         @forelse ($categories as $category)
-            <li><a href="#"> {{ $category->name }} <span>{{ $category->posts()->count()  }}</span></a></li>
+        <li><a href="{{ route('post.category', [$category->id]) }}"> {{ $category->name }} <span>{{ $category->posts()->count()  }}</span></a></li>
         @empty
             Empty
         @endforelse
@@ -20,39 +20,20 @@
 
   <div class="sidebar-box ftco-animate">
     <h3 class="sidebar-heading">Popular Articles</h3>
-    <div class="block-21 mb-4 d-flex">
-      <a class="blog-img mr-4" style="background-image: url({{ url('frontend/images/image_1.jpg') }});"></a>
-      <div class="text">
-        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-        <div class="meta">
-          <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-          <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-          <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="block-21 mb-4 d-flex">
-      <a class="blog-img mr-4" style="background-image: url({{ url('frontend/images/image_2.jpg') }});"></a>
-      <div class="text">
-        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-        <div class="meta">
-          <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-          <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-          <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="block-21 mb-4 d-flex">
-      <a class="blog-img mr-4" style="background-image: url({{ url('frontend/images/image_3.jpg') }});"></a>
-      <div class="text">
-        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-        <div class="meta">
-          <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-          <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-          <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-        </div>
-      </div>
-    </div>
+    @foreach ($posts as $post)
+        <div class="block-21 mb-4 d-flex">
+            <a class="blog-img mr-4" style="background-image: url({{ Storage::url($post->image) }});"></a>
+            <div class="text">
+            <h3 class="heading"><a href="#">{{$post->title}}</a></h3>
+            <div class="meta">
+                <div><a href="#"><span class="icon-calendar"></span> {{ \Carbon\Carbon::parse($post->created_at->format('Y-m-d')) }}</a></div>
+                <div><a href="#"><span class="icon-person"></span> {{$post->user->name}}</a></div>
+                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+            </div>
+            </div>
+        </div> 
+    @endforeach
+    
   </div>
 
   
