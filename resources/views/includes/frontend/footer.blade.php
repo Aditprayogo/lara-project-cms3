@@ -1,6 +1,6 @@
 <div class="colorlib-footer">
     <br>
-    <h1 id="colorlib-logo" class="mb-0"><a href="index.html" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">Aditiya <span>Prayogo</span></a></h1>
+    <h1 id="colorlib-logo" class="mb-2"><a href="index.html" style="background-image: url({{ url('frontend/images/bg_1.jpg') }});">Aditiya <span>Prayogo</span></a></h1>
     <div class="mb-4">
         <h3>Subscribe for newsletter</h3>
         <form action="#" class="colorlib-subscribe-form">

@@ -47,9 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
 	});	
 });
 
-
-
-
 Route::get('/about', 'AboutController@index')
 	->name('about.index');
 

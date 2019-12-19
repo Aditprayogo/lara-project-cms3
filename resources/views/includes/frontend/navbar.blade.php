@@ -1,7 +1,7 @@
 <nav id="colorlib-main-menu" role="navigation">
     <ul>
         <li><a href="{{ Route('home.index') }}">Home</a></li>
-        <li><a href="fashion.html">Fashion</a></li>
+        {{-- <li><a href="fashion.html">Fashion</a></li> --}}
         {{-- <li><a href="travel.html">Travel</a></li> --}}
         <li><a href="{{ Route('about.index') }}">About</a></li>
 {{--         

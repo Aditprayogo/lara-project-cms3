@@ -12,25 +12,22 @@ class HomeController extends Controller
     public function index()
 	{
 		# code...
-		$posts = Post::with(['user', 'categories'])->paginate(10);
+		$posts = Post::with(['user', 'categories'])->latest()->paginate(30);
 
-		$categories = Category::paginate(10);
+		// $post_popular = Post::with(['user', 'categories'])->orderBy('views', 'asc')->get();
+
+	
+
+		$categories = Category::all();
 
 		return view('home', [
 			'posts' => $posts,
-			'categories' => $categories
+			'categories' => $categories,
+			// 'post_popular' => $post_popular
 		]);
 	}
 
-	public function pupular()
-	{
-		# code...
-		$posts = Post::with(['user', 'categories'])->orderBy('views', 'asc')->take(10);
-
-		return view('includes.frontend.sidebar', [
-			'posts' => $posts
-		]);
-	}
+	
 
 	
 }
