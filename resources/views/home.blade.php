@@ -34,12 +34,11 @@
                         
                         
                 </div><!-- END-->
+                
                 <div class="row">
                     <div class="col">
                         <div class="block-27">
-                            <ul>
-                                <li>{{ $posts->links() }}</li>
-                            </ul>
+                            {{ $posts->links() }}
                         </div>
                     </div>
                 </div>

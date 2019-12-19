@@ -10,7 +10,9 @@
       <h3 class="sidebar-heading">Categories</h3>
     <ul class="categories">
         @forelse ($categories as $category)
-        <li><a href="{{ route('category.post', [$category->id]) }}"> {{ $category->name }} <span>{{ $category->posts()->count()  }}</span></a></li>
+        <li>
+            <a href="{{ route('category.posts.detail', $category->id) }}"> {{ $category->name }} <span>{{ $category->posts()->count()  }}</span></a>
+        </li>
         @empty
             Empty
         @endforelse

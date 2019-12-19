@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
 	{
 		# code...
-		$posts = Post::with(['user', 'categories'])->paginate(3);
+		$posts = Post::with(['user', 'categories'])->paginate(10);
 
 		$categories = Category::paginate(10);
 
@@ -32,23 +32,5 @@ class HomeController extends Controller
 		]);
 	}
 
-	public function postByCategory($id)
-	{
-		# code...
-		
-		// $categories = Category::all();
-		$category = Category::findOrFail($id);
-
-		// $posts = Post::whereHas('categories', function($q) use ($category_id) {
-
-		// 		$q->where('id', $catId);
-
-		// })->get();
-
-		$posts = $category->posts()->wherePivot('category_id' ,'=', $category)->get();
-
-		return view('home2', [
-			'posts' => $posts,
-		]);
-	}
+	
 }
