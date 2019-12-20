@@ -1,5 +1,11 @@
 @extends('layouts.blog-home')
 
+@section('title')
+
+    Home {{ $category->name }}
+    
+@endsection
+
 @section('content')
 
 

@@ -1,5 +1,11 @@
 @extends('layouts.blog-home')
 
+@section('title')
+
+Contact us
+    
+@endsection
+
 
 @section('content')
 
@@ -28,7 +34,7 @@
                 </div>
                 <div class="col-lg-6 col-xl-3 d-flex mb-4">
                     <div class="info bg-light p-4">
-                        <p><span>Website</span> <a href="#">https://github.com/Aditprayogo</a></p>
+                        <p><span>Website</span> <a href="https://github.com/Aditprayogo">Github</a></p>
                     </div>
                 </div>
             </div>
