@@ -19,7 +19,7 @@
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                   @foreach ($post->categories as $category)
-                    <a href="#" class="tag-cloud-link">{{$category->name}}</a>
+                    <a href="{{ route('category.posts.detail', $category->id) }}" class="tag-cloud-link">{{$category->name}}</a>
                   @endforeach
               </div>
             </div>

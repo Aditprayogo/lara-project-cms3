@@ -49,7 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/about', 'AboutController@index')
 	->name('about.index');
-
+	
+Route::get('/contact', 'ContactController@index')
+	->name('contact.index');
 
 Auth::routes();
 
