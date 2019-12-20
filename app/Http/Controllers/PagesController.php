@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
-use App\User;
-use App\Post;
-use App\Category;
-
-class AboutController extends Controller
+class PagesController extends Controller
 {
-    public function index()
+    public function about()
 	{
 		# code...
 		$user = auth()->user();
@@ -19,5 +14,11 @@ class AboutController extends Controller
 		return view('about', [
 			'user' => $user
 		]);
+	}
+
+	public function contact()
+	{
+		# code...
+		return view('contact');
 	}
 }

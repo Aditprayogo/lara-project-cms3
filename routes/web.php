@@ -47,11 +47,13 @@ Route::group(['middleware' => 'auth'], function () {
 	});	
 });
 
-Route::get('/about', 'AboutController@index')
+Route::get('/about', 'PagesController@about')
 	->name('about.index');
 	
-Route::get('/contact', 'ContactController@index')
+Route::get('/contact', 'PagesController@contact')
 	->name('contact.index');
+
+
 
 Auth::routes();
 
