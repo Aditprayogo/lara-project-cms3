@@ -18,11 +18,11 @@ class HomeController extends Controller
 
 	
 
-		$categories = Category::all();
+		// $categories = Category::all();
 
 		return view('home', [
 			'posts' => $posts,
-			'categories' => $categories,
+			// 'categories' => $categories,
 			// 'post_popular' => $post_popular
 		]);
 	}

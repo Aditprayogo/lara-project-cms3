@@ -22,14 +22,14 @@
 
   <div class="sidebar-box ftco-animate">
     <h3 class="sidebar-heading">Popular Articles</h3>
-    @foreach ($posts as $post)
+    @foreach ($post_sidebar as $pp)
         <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url({{ Storage::url($post->image) }});"></a>
+            <a class="blog-img mr-4" style="background-image: url({{ Storage::url($pp->image) }});"></a>
             <div class="text">
-            <h3 class="heading"><a href="#">{{$post->title}}</a></h3>
+            <h3 class="heading"><a href="#">{{$pp->title}}</a></h3>
             <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> {{ \Carbon\Carbon::parse($post->created_at->format('Y-m-d')) }}</a></div>
-                <div><a href="#"><span class="icon-person"></span> {{$post->user->name}}</a></div>
+                <div><a href="#"><span class="icon-calendar"></span> {{ \Carbon\Carbon::parse($pp->created_at->format('Y-m-d')) }}</a></div>
+                <div><a href="#"><span class="icon-person"></span> {{$pp->user->name}}</a></div>
                 <div><a href="#"><span class="icon-chat"></span> 19</a></div>
             </div>
             </div>
