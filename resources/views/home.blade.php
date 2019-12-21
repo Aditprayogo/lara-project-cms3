@@ -14,6 +14,12 @@
             <div class="col-xl-8 py-5 px-md-5">
                 <div class="row pt-md-4">
 
+                    <div class="text-center mb-3 col-lg">
+                        <h1>Home</h1>
+                        <hr>
+
+                    </div>
+
                     @forelse ($posts as $post)
                     <div class="col-md-12">
                         <div class="blog-entry ftco-animate d-md-flex">
